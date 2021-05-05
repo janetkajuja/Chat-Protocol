@@ -16,4 +16,4 @@ Run a client and specify locolhost as "127.0.0.1" in the terminal, example /clie
 you can also add a packet size for limiting the number of packets received from the client to server.
 
 
-This program is still in progress
+This program is for UDP protocol and a program with TCP protocol still in progress
