@@ -17,18 +17,20 @@ class CommandOption:
         socket_server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         socket_server.bind((host, port))
         print("Server Started")
-        # list = []
-        # BUFF_SIZE = packet  # 4 KiB
+        list = []
+        BUFF_SIZE = packet
         while True:
             data, addr = socket_server.recvfrom(int(packet))
             data = data.decode('utf-8')
-            header_id = data[3]
-            print("Message from: " + str(addr))
-            print("From connected user: " + data, addr)
-            if data[:2] == "PY":
-                user = input("Response: ")
-                message = f"PY:{header_id}:Response:{user}"
-                socket_server.sendto(message.encode('utf-8'), addr)
+            print("______-", data)
+            while True:
+                header_id = data[3]
+                print("Message from: " + str(addr))
+                print("From connected user: " + data, addr)
+                if data[:2] == "PY":
+                    user = input("Response: ")
+                    message = f"PY:{header_id}:Response:{user}"
+                    socket_server.sendto(message.encode('utf-8'), addr)
 
     def server(self):
         """Function for checking the limited packet"""

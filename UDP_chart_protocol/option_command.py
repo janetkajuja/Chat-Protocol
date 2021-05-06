@@ -3,6 +3,7 @@
 from argparse import ArgumentParser
 import sys
 
+
 class Option:
     """Class which contain all possible commandline options"""
     @staticmethod
@@ -14,6 +15,9 @@ class Option:
             print("Connecting to the port")
         if option.packet <= 100:
             print("you are in the right packet size")
+        # if option.run:
+        #     print("Running the server")
+
         else:
             print("you have exceeded the packet size")
             sys.exit(0)
@@ -25,10 +29,12 @@ class Option:
         parser.add_argument("-p", "--port", type=int, default=8080, help="port")
         parser.add_argument("-host", "--hostname", default="localhost", required=True)
         parser.add_argument("-pck", "--packet", type=int, help="Add packet size", required=True)
+        #parser.add_argument("-r", "--run", help="Run the program", required=True)
         return parser.parse_args()
 
     @staticmethod
     def make_chunks(msg, packet_size):
         """Function for checking the length message according to the packet size provided"""
+
         for i in range(0, len(msg), packet_size):
             yield msg[i:i+packet_size]

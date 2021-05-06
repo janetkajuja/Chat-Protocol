@@ -23,7 +23,7 @@ class Client:
 
         while message != 'q':
 
-            message = f"PY:{header_id + 1}:Request:{message}"
+            message = f"PY|{header_id + 1}|Request|{message}"
             if message[:2] == "PY":
                 socket_udp.sendto(message.encode("utf-8"), server)
                 header_id += 1
